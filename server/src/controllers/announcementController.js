@@ -1,5 +1,5 @@
 import { Announcement } from "../models/models.js";
-import { where } from "sequelize";
+import { JSON, where } from "sequelize";
 import * as uuid from "uuid";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -21,43 +21,53 @@ function sortGetAll(info) {
 class AnnouncementController {
   async create(req, res) {
     try {
-      const {
-        carId,
-        body_year,
-        volume,
-        fuelId,
-        bodyId,
-        transmissionId,
-        typeDetailId,
-        advertisementArticle,
-        detailNumber,
-        description,
-        price,
-        discount,
-        partCondition,
-        VIN,
-      } = req.body;
+      // const {
+      //   carId,
+      //   body_year,
+      //   volume,
+      //   fuelId,
+      //   bodyId,
+      //   transmissionId,
+      //   typeDetailId,
+      //   advertisementArticle,
+      //   detailNumber,
+      //   description,
+      //   price,
+      //   discount,
+      //   partCondition,
+      //   VIN,
+      // } = req.body;
       const { img } = req.files;
       let fileName = uuid.v4() + ".jpg";
       img.mv(path.resolve(__dirname, "..", "static", fileName));
-      const announcement = await Announcement.create({
-        carId,
-        body_year,
-        volume,
-        fuelId,
-        bodyId,
-        transmissionId,
-        typeDetailId,
-        img: fileName,
-        advertisementArticle,
-        detailNumber,
-        description,
-        price,
-        discount,
-        partCondition,
-        VIN,
-      });
-      return res.json(announcement);
+      // const announcement = await Announcement.create({
+      //   carId,
+      //   body_year,
+      //   volume,
+      //   fuelId,
+      //   bodyId,
+      //   transmissionId,
+      //   typeDetailId,
+      //   img: fileName,
+      //   advertisementArticle,
+      //   detailNumber,
+      //   description,
+      //   price,
+      //   discount,
+      //   partCondition,
+      //   VIN,
+      // });
+      // for (let i = 0; i < img.length; i++) {
+      //   console.log(img[i].name);
+      // }
+
+      if (Array.isArray(img)) {
+        console.log(img);
+      } else {
+        console.log(0);
+      }
+
+      return res.json(img);
     } catch (e) {
       return res.json(e);
     }
@@ -80,13 +90,13 @@ class AnnouncementController {
   async getOne(req, res) {
     try {
       const { id } = req.params;
-      if (!id) {
-        return res.json({ message: "id не найден!" });
-      }
       const announcement = await Announcement.findOne({
         where: { id: id },
         include: { all: true },
       });
+      if (!announcement) {
+        return res.json({ message: "id не найден!" });
+      }
       return res.json(announcement);
     } catch (e) {
       return res.json(e);

@@ -36,7 +36,7 @@ const Announcement = DataBase.define(
       type: DataTypes.FLOAT,
     },
     img: {
-      type: DataTypes.STRING,
+      type: DataTypes.JSON,
       allowNull: false,
     },
     advertisementArticle: {
@@ -160,6 +160,92 @@ const Body = DataBase.define(
   {
     freezeTableName: true,
     tableName: "Bodys",
+  },
+);
+
+// wheelAnnouncement
+
+// const WheelAnnouncement = DataBase.define(
+//   "wheelAnnouncement",
+//   {
+//     id: {
+//       type: DataTypes.INTEGER,
+//       primaryKey: true,
+//       autoIncrement: true,
+//       allowNull: false,
+//     },
+//     width: {
+//       type: DataTypes.STRING,
+//     },
+//     height: {
+//       type: DataTypes.STRING,
+//     },
+//     radius: {
+//       type: DataTypes.STRING,
+//     },
+//     state: {
+//       type: DataTypes.BOOLEAN,
+//     },
+//     season: {
+//       type: DataTypes.BOOLEAN,
+//     },
+//     quantity: {
+//       type: DataTypes.NUMBER,
+//     },
+//     year: {
+//       type: DataTypes.NUMBER,
+//     },
+//     article: {
+//       type: DataTypes.STRING,
+//     },
+//     description: {
+//       type: DataTypes.STRING,
+//     },
+//     img: {
+//       type: DataTypes.JSON,
+//     },
+//   },
+//   {
+//     freezeTableName: true,
+//     tableName: "WheelAnnouncements",
+//   },
+// );
+//
+// const WheelBrand = DataBase.define(
+//   "wheelBrand",
+//   {
+//     id: {
+//       type: DataTypes.INTEGER,
+//       primaryKey: true,
+//       autoIncrement: true,
+//       allowNull: false,
+//     },
+//     name: {
+//       type: DataTypes.STRING,
+//     },
+//   },
+//   {
+//     freezeTableName: true,
+//     tableName: "WheelBrands",
+//   },
+// );
+
+const CarType = DataBase.define(
+  "carType",
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+      allowNull: false,
+    },
+    name: {
+      type: DataTypes.STRING,
+    },
+  },
+  {
+    freezeTableName: true,
+    tableName: "CarTypes",
   },
 );
 

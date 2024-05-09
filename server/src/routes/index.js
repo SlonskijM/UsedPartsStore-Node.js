@@ -6,7 +6,7 @@ import announcementRouter from "./announcementRouter.js";
 
 const router = Router();
 
-router.use("/", userRouter);
+router.use("/user", userRouter);
 router.use("/car", carRouter);
 router.use("/detail", detailRouter);
 router.use("/announcement", announcementRouter);
